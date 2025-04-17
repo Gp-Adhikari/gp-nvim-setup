@@ -25,12 +25,14 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.cursorline = true
 vim.opt.wrap = true
+vim.opt.termguicolors = true
+vim.opt.swapfile = false
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.cmd [[ set noswapfile ]]
-vim.cmd [[ set termguicolors ]]
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -42,6 +44,5 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  install = { colorscheme = { "catppuccin" } },
   checker = { enabled = false },
 })
