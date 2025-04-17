@@ -5,7 +5,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -13,6 +13,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Tab settings
 vim.opt.expandtab = true
@@ -25,12 +29,14 @@ vim.opt.wrap = true
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+vim.cmd [[ set noswapfile ]]
+vim.cmd [[ set termguicolors ]]
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("i", "jj", "<Esc>", {noremap = true, silent = true})
+vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>', { desc = "remove search highlight" })
 
--- Leader key
-vim.g.mapleader = " "
 
 require("lazy").setup({
   spec = {
